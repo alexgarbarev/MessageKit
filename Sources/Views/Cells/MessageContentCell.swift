@@ -186,24 +186,24 @@ open class MessageContentCell: MessageCollectionViewCell {
 
         switch attributes.avatarPosition.horizontal {
         case .cellLeading:
-            break
+            origin.x = attributes.avatarPosition.horisontalOffset
         case .cellTrailing:
-            origin.x = attributes.frame.width - attributes.avatarSize.width
+            origin.x = attributes.frame.width - attributes.avatarSize.width - attributes.avatarPosition.horisontalOffset
         case .natural:
             fatalError(MessageKitError.avatarPositionUnresolved)
         }
 
         switch attributes.avatarPosition.vertical {
         case .messageLabelTop:
-            origin.y = messageTopLabel.frame.minY
+            origin.y = messageTopLabel.frame.minY + attributes.avatarPosition.verticalOffset
         case .messageTop: // Needs messageContainerView frame to be set
-            origin.y = messageContainerView.frame.minY
+            origin.y = messageContainerView.frame.minY + attributes.avatarPosition.verticalOffset
         case .messageBottom: // Needs messageContainerView frame to be set
-            origin.y = messageContainerView.frame.maxY - attributes.avatarSize.height
+            origin.y = messageContainerView.frame.maxY - attributes.avatarSize.height - attributes.avatarPosition.verticalOffset
         case .messageCenter: // Needs messageContainerView frame to be set
-            origin.y = messageContainerView.frame.midY - (attributes.avatarSize.height/2)
+            origin.y = messageContainerView.frame.midY - (attributes.avatarSize.height/2) + attributes.avatarPosition.verticalOffset
         case .cellBottom:
-            origin.y = attributes.frame.height - attributes.avatarSize.height
+            origin.y = attributes.frame.height - attributes.avatarSize.height - attributes.avatarPosition.verticalOffset
         default:
             break
         }

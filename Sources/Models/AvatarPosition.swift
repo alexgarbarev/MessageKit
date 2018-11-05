@@ -74,6 +74,10 @@ public struct AvatarPosition {
     // The horizontal position
     public var horizontal: Horizontal
     
+    public var verticalOffset: CGFloat = 0
+    
+    public var horisontalOffset: CGFloat = 0
+    
     // MARK: - Initializers
     
     public init(horizontal: Horizontal, vertical: Vertical) {
